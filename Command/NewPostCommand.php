@@ -7,10 +7,11 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
 
 class NewPostCommand extends ContainerAwareCommand
 {
+    use CreateTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -29,6 +30,7 @@ class NewPostCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Generate the template content.
         $content = <<< CONTENT
 ---
 title:
@@ -36,20 +38,7 @@ title:
 
 CONTENT;
 
-        $path[] = $this->getContainer()->getParameter('sculpin.source_dir');
-        $path[] = '_posts';
-        $path[] = $filename = $input->getArgument('filename');
-        $path = implode(DIRECTORY_SEPARATOR, $path);
-
-        /** @var Filesystem $filesystem */
-        $filesystem = $this->getContainer()->get('filesystem');
-        if (!$filesystem->exists($path) || $input->getOption('force')) {
-            $filesystem->dumpFile($path, $content);
-
-            $output->writeln('<info>' . sprintf('%s has been created.', $filename) . '</info>');
-        }
-        else {
-            $output->writeln('<error>' . sprintf('%s already exists.', $filename) . '</error>');
-        }
+        // TODO: Is there a way to get the directory name from the container
+        $this->createFile($input, $output, '_posts', $content);
     }
 }
