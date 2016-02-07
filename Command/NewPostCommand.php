@@ -5,6 +5,7 @@ namespace Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Command;
 use Sculpin\Core\Console\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -19,6 +20,7 @@ class NewPostCommand extends ContainerAwareCommand
             ->setName('content:post')
             ->setDescription('Create a new post')
             ->addArgument('filename', InputArgument::REQUIRED, 'The name of the file to generate')
+            ->addOption('force', 'f', InputOption::VALUE_NONE, 'Overwrite the file if it already exists')
         ;
     }
 
@@ -41,7 +43,7 @@ CONTENT;
 
         /** @var Filesystem $filesystem */
         $filesystem = $this->getContainer()->get('filesystem');
-        if (!$filesystem->exists($path)) {
+        if (!$filesystem->exists($path) || $input->getOption('force')) {
             $filesystem->dumpFile($path, $content);
 
             $output->writeln('<info>' . sprintf('%s has been created.', $filename) . '</info>');
