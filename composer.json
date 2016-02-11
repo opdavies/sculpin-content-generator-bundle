@@ -1,0 +1,22 @@
+{
+    "name": "opdavies/sculpin-content-generator-bundle",
+    "type": "library",
+    "keywords": ["sculpin"],
+    "description": "Provides new Sculpin commands for generating new content",
+    "licence": "MIT",
+    "authors": [
+        {
+            "name": "Oliver Davies",
+            "email": "oliver@oliverdavies.uk",
+            "homepage": "https://www.oliverdavies.uk"
+        }
+    ],
+    "require": {
+        "php": "5.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Opdavies\\Sculpin\\Bundle\\ContentGeneratorBundle\\": ""
+        }
+    }
+}
