@@ -18,7 +18,7 @@ class NewPostCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('content:post')
+            ->setName('content:new:post')
             ->setDescription('Create a new post')
             ->addArgument('filename', InputArgument::REQUIRED, 'The name of the file to generate')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Overwrite the file if it already exists')
