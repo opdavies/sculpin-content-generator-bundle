@@ -3,7 +3,7 @@
     "type": "library",
     "keywords": ["sculpin"],
     "description": "Provides new Sculpin commands for generating new content",
-    "licence": "MIT",
+    "license": "MIT",
     "authors": [
         {
             "name": "Oliver Davies",
