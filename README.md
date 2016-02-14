@@ -41,9 +41,9 @@ class SculpinKernel extends AbstractKernel
 
 ## Usage
 
-With the bundle enabled, you can now see the additional commands by run the `sculpin` command.
+With the bundle enabled, you can now see the additional commands by run the `sculpin` command. Currently, only `content:new:post` is added, which generates posts.
 
-The default one is `content:new:post` that generates posts.
+The next step for is to allow for the bundle to be extended and to allow for customised templates, and also the ability to add commands for other content types - or ideally load them automatically from `sculpin_content_types`.
 
 ### Options
 
