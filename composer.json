@@ -14,6 +14,9 @@
     "require": {
         "php": ">=5.3.3"
     },
+    "suggest": {
+        "sculpin/sculpin": "@stable"
+    },
     "autoload": {
         "psr-4": {
             "Opdavies\\Sculpin\\Bundle\\ContentGeneratorBundle\\": ""
