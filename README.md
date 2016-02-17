@@ -1,5 +1,7 @@
 # Sculpin Content Generator Bundle
 
+[![Latest Stable Version](https://poser.pugx.org/opdavies/sculpin-content-generator-bundle/v/stable)](https://packagist.org/packages/opdavies/sculpin-content-generator-bundle) [![Total Downloads](https://poser.pugx.org/opdavies/sculpin-content-generator-bundle/downloads)](https://packagist.org/packages/opdavies/sculpin-content-generator-bundle) [![Latest Unstable Version](https://poser.pugx.org/opdavies/sculpin-content-generator-bundle/v/unstable)](https://packagist.org/packages/opdavies/sculpin-content-generator-bundle) [![License](https://poser.pugx.org/opdavies/sculpin-content-generator-bundle/license)](https://packagist.org/packages/opdavies/sculpin-content-generator-bundle)
+
 Adds additional console commands to automate the creation of new content.
 
 ## Installation
