@@ -11,8 +11,8 @@ trait CreateTrait
     private function createFile(
       InputInterface $input,
       OutputInterface $output,
-      $subDir,
-      $content
+      $subDir = '',
+      $content = ''
     ) {
         $path[] = $this->getContainer()->getParameter('sculpin.source_dir');
         $path[] = $subDir;
