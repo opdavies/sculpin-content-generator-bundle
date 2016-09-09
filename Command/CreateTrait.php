@@ -13,8 +13,7 @@ trait CreateTrait
       OutputInterface $output,
       $subDir,
       $content
-    )
-    {
+    ) {
         $path[] = $this->getContainer()->getParameter('sculpin.source_dir');
         $path[] = $subDir;
         $path[] = $filename = $input->getOption('filename');
@@ -26,8 +25,7 @@ trait CreateTrait
             $filesystem->dumpFile($path, $content);
 
             $output->writeln('<info>' . sprintf('%s has been created.', $filename) . '</info>');
-        }
-        else {
+        } else {
             $output->writeln('<error>' . sprintf('%s already exists.', $filename) . '</error>');
         }
     }
