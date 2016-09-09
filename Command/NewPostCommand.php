@@ -58,6 +58,9 @@ class NewPostCommand extends ContainerAwareCommand
         $content = <<< CONTENT
 ---
 title: {$input->getOption('title')}
+layout: default
+tags: []
+draft: true
 ---
 
 CONTENT;
