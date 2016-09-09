@@ -21,5 +21,10 @@
         "psr-4": {
             "Opdavies\\Sculpin\\Bundle\\ContentGeneratorBundle\\": ""
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
     }
 }
