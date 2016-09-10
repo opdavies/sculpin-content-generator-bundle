@@ -8,19 +8,70 @@ use Symfony\Component\Filesystem\Filesystem;
 
 trait CreateTrait
 {
+    /**
+     * Create a new file.
+     *
+     * @param InputInterface $input
+     *   The input instance.
+     * @param OutputInterface $output
+     *   The output instance.
+     * @param string $subDir
+     *   The parent directories for the file.
+     * @param string $content
+     *   The file contents.
+     */
     private function createFile(
-      InputInterface $input,
-      OutputInterface $output,
-      $subDir = '',
-      $content = ''
+        InputInterface $input,
+        OutputInterface $output,
+        $subDir = '',
+        $content = ''
     ) {
+        $path = $this->getFilePath($input, $subDir);
+        $this->writeFile($input, $output, $path, $content);
+    }
+
+    /**
+     * Generate the name and path for the new file.
+     *
+     * @param InputInterface $input
+     *   The input instance.
+     * @param string $subDir
+     *   The sub-directory to place the file in.
+     *
+     * @return string
+     *   The absolute path for the new file.
+     */
+    private function getFilePath(InputInterface $input, $subDir)
+    {
+        $path = [];
+
         $path[] = $this->getContainer()->getParameter('sculpin.source_dir');
         $path[] = $subDir;
-        $path[] = $filename = $input->getOption('filename');
+        $path[] = $input->getOption('filename');
 
-        // The absolute path to the new file.
-        $path = implode(DIRECTORY_SEPARATOR, $path);
+        return implode(DIRECTORY_SEPARATOR, $path);
+    }
 
+    /**
+     * Writes a file to disk.
+     *
+     * @param InputInterface $input
+     *   The input instance.
+     * @param OutputInterface $output
+     *   The output instance.
+     * @param string $path
+     *   The path to create.
+     * @param string $content
+     *   The file contents.
+     *
+     * @return $this
+     */
+    private function writeFile(
+        InputInterface $input,
+        OutputInterface $output,
+        $path,
+        $content
+    ) {
         // A shorter path to the new file, relative to the site root.
         $shortPath = str_replace(getcwd() . '/', '', $path);
 
@@ -34,5 +85,7 @@ trait CreateTrait
         } else {
             $output->writeln('<error>' . sprintf('%s already exists.', $shortPath) . '</error>');
         }
+
+        return $this;
     }
 }
