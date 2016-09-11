@@ -46,7 +46,11 @@ trait CreateTrait
         $path = [];
 
         $path[] = $this->getContainer()->getParameter('sculpin.source_dir');
-        $path[] = $subDir;
+
+        if ($subDir) {
+            $path[] = $subDir;
+        }
+
         $path[] = $input->getOption('filename');
 
         return implode(DIRECTORY_SEPARATOR, $path);
