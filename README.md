@@ -61,6 +61,10 @@ If empty, you will be required to enter a title interactively when executing the
 
 The name of the file to generate.
 
+    --extension
+
+The file extension to use.
+
 If empty, you will be required to enter a title interactively. A default filename will be provided based on the provided title and the current date.
 
 ##Author
