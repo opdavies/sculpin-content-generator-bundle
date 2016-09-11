@@ -16,8 +16,6 @@ class NewPageCommand extends ContainerAwareCommand {
 
     const SUBDIR = '';
 
-    const FILETYPE = 'md';
-
     /**
      * {@inheritdoc}
      */
@@ -36,6 +34,12 @@ class NewPageCommand extends ContainerAwareCommand {
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'The name of the file to generate'
+            )
+            ->addOption(
+                'extension',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The file extension to use'
             )
             ->addOption(
                 'force',
@@ -78,7 +82,13 @@ CONTENT;
             ));
         }
 
-        // TODO: Define file extension.
+        // --extension option
+        if (!$input->getOption('extension')) {
+            $input->setOption('extension', $io->choice(
+                'Which file extension?',
+                ['md', 'html.twig', 'twig', 'html']
+            ));
+        }
 
         // --fieldname option
         if (!$input->getOption('filename')) {
@@ -88,7 +98,7 @@ CONTENT;
                     ' ',
                     self::FILENAME_SEPARATOR,
                     strtolower($input->getOption('title'))
-                ) . '.' . self::FILETYPE
+                ) . '.' . $input->getOption('extension')
             ));
         }
     }
