@@ -90,7 +90,7 @@ CONTENT;
             ));
         }
 
-        // --fieldname option
+        // --filename option
         if (!$input->getOption('filename')) {
             $input->setOption('filename', $io->ask(
                 'Enter the name of the file',
