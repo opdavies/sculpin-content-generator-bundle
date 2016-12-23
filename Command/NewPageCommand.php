@@ -2,6 +2,7 @@
 
 namespace Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Command;
 
+use Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Service\FilenameGenerator;
 use Sculpin\Core\Console\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,8 +12,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class NewPageCommand extends ContainerAwareCommand {
     use CreateTrait;
-
-    const FILENAME_SEPARATOR = '-';
 
     const SUBDIR = '';
 
@@ -92,13 +91,12 @@ CONTENT;
 
         // --filename option
         if (!$input->getOption('filename')) {
+            $generator = new FilenameGenerator($input->getOption('title'));
+            $generator->setFileExtension($input->getOption('extension'));
+
             $input->setOption('filename', $io->ask(
                 'Enter the name of the file',
-                str_replace(
-                    ' ',
-                    self::FILENAME_SEPARATOR,
-                    strtolower($input->getOption('title'))
-                ) . '.' . $input->getOption('extension')
+                $generator->getFilename()
             ));
         }
     }

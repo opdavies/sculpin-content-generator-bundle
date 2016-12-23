@@ -2,6 +2,7 @@
 
 namespace Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Command;
 
+use Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Service\FilenameGenerator;
 use Sculpin\Core\Console\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,12 +14,8 @@ class NewPostCommand extends ContainerAwareCommand
 {
     use CreateTrait;
 
-    const FILENAME_SEPARATOR = '-';
-
     // TODO: Is there a way to get the directory name from the container
     const SUBDIR = '_posts';
-
-    const FILETYPE = 'md';
 
     /**
      * {@inheritdoc}
@@ -84,15 +81,18 @@ CONTENT;
 
         // --filename option
         if (!$input->getOption('filename')) {
-            $date = \DateTime::createFromFormat('U', time())->format('Y-m-d');
+            $date = \DateTime::createFromFormat('U', time());
+
+            $generator = new FilenameGenerator();
+            $generator
+                ->setTitle($input->getOption('title'))
+                ->setYear($date->format('Y'))
+                ->setMonth($date->format('m'))
+                ->setDay($date->format('d'));
 
             $input->setOption('filename', $io->ask(
                 'Enter the name of the file',
-                $date . self::FILENAME_SEPARATOR . str_replace(
-                    ' ',
-                    self::FILENAME_SEPARATOR,
-                    strtolower($input->getOption('title'))
-                ) . '.' . self::FILETYPE
+                $generator->getFilename()
             ));
         }
     }
