@@ -19,7 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Opdavies\\Sculpin\\Bundle\\ContentGeneratorBundle\\": ""
+            "Opdavies\\Sculpin\\Bundle\\ContentGeneratorBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Opdavies\\Sculpin\\Bundle\\ContentGeneratorBundle\\Tests\\": "tests"
         }
     },
     "extra": {
