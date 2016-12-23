@@ -82,7 +82,7 @@ CONTENT;
             ));
         }
 
-        // --fieldname option
+        // --filename option
         if (!$input->getOption('filename')) {
             $date = \DateTime::createFromFormat('U', time())->format('Y-m-d');
 
