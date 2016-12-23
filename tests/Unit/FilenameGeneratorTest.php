@@ -1,6 +1,6 @@
 <?php
 
-namespace Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Tests;
+namespace Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Tests\Unit;
 
 use Opdavies\Sculpin\Bundle\ContentGeneratorBundle\Service\FilenameGenerator;
 
