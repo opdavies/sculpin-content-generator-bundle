@@ -93,8 +93,7 @@ class FilenameGenerator
      */
     public function getFilename()
     {
-        $filename = strtolower($this->title);
-        $filename = str_replace(' ',  '-', $filename);
+        $filename = strtolower(str_replace(' ',  '-', $filename));
 
         foreach (['day', 'month', 'year'] as $property) {
             // Append any date parts to be beginning of the filename.
